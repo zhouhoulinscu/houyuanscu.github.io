@@ -8,7 +8,7 @@
         */
         window.GLOBAL_CONFIG = {
             SCF_GATEWAY: "https://od.vcloud.workers.dev/",
-            SITE_NAME: "FODI",
+            SITE_NAME: "ODIndex",
             IS_CF: true
         };
         if (window.GLOBAL_CONFIG.SCF_GATEWAY.indexOf('workers') === -1) {
@@ -22,6 +22,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
     <script src="//s0.pstatp.com/cdn/expire-1-M/ionicons/4.5.6/ionicons.js"></script>
+    <link rel="shortcut icon" href="//blog.vircloud.net/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="//blog.vircloud.net/favicon.png">
     <script src="//s0.pstatp.com/cdn/expire-1-M/marked/0.6.2/marked.min.js"></script>
     <script src="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/highlight.min.js"></script>
     <link href="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/styles/github.min.css" rel="stylesheet" />
@@ -40,7 +42,7 @@
             padding-top: 1em;
             display: none;
         }
-
+        
         .password input {
             height: 2em;
             outline: none;
@@ -77,7 +79,7 @@
 
         .file-name {
             line-height: 1em;
-            padding: 1em 1em 0;
+            padding: 2em 1em 0;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
@@ -136,11 +138,12 @@
 
         ion-icon {
             font-size: 1.5em;
+            color: #555555;
         }
 
         * {
-            box-sizing: border-box;
-            font-family: serif;
+            /*box-sizing: border-box;*/
+            font-family: "Ubuntu","Roboto","Helvetica","Arial","sans-serif"!important;
         }
 
         .markdown-body {
@@ -224,10 +227,9 @@
         }
 
         #main-page:hover,
-        .nav-path:hover,
         .tree-node:hover,
         .row.file-wrapper:hover {
-            color: rgb(90, 101, 133);
+            box-shadow: 0 1px 10px 0 rgba(0,0,0,0.5);
             cursor: pointer;
         }
 
@@ -281,13 +283,13 @@
             padding: 0 .8em 0 1em;
             display: flex;
             align-items: center;
-            border-bottom: solid rgb(218, 215, 215) 1px;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
         }
 
         .row.file-wrapper {
-            font-size: .8em;
+            font-size: 13px;
             padding: 0 1em;
-            height: 2em;
+         /*   height: 2em;*/
         }
 
         .file {
@@ -380,7 +382,7 @@
             }
 
             .file-name {
-                padding: 1em .3em 0;
+                padding: 2em .3em .3em;
             }
 
             .content {
@@ -398,6 +400,38 @@
 
 
         }
+        ::selection {
+            color: #fff;
+            background: #ff4081;
+            text-shadow: none;
+        }
+        .info .file-name{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .nav-path:hover{
+            color: #9c9c9c;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        } 
+        ::-webkit-scrollbar-track,
+        ::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            border: 1px solid transparent;
+        }
+        ::-webkit-scrollbar-track {
+            box-shadow: 1px 1px 3px rgba(0,0,0,.2) inset;
+        }
+        ::-webkit-scrollbar-thumb {
+            min-height: 20px;
+            background-clip: content-box;
+            box-shadow: 0 0 0 3px rgba(0,0,0,.2) inset;
+        }
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        } 
     </style>
     <script>
         function createCORSRequest(method, url, timeout) {
@@ -954,7 +988,7 @@
                             break;
                         default:
                             content.style['text-align'] = 'center';
-                            content.innerHTML = '该文件不支持预览';
+                            content.innerHTML = '当前文件不支持预览';
                             break;
 
                     }
@@ -967,7 +1001,7 @@
                             previewHandler.copyTextContent(null, window.api.url + '?file=' + path);
                             const btn = document.querySelector('.btn.quote');
                             btn.innerHTML = '已复制';
-                            setTimeout(() => btn.innerHTML = '引用', 250);
+                            setTimeout(() => btn.innerHTML = '引用文件地址', 250);
                         }
                     );
                     document.querySelector('.btn.share').addEventListener('click',
@@ -986,7 +1020,7 @@
                                 '?path=' + sharePath());
                             const btn = document.querySelector('.btn.share');
                             btn.innerHTML = '已复制';
-                            setTimeout(() => btn.innerHTML = '分享', 250);
+                            setTimeout(() => btn.innerHTML = '复制页面地址', 250);
                         }
                     );
                     switchRightDisplay('preview');
@@ -1302,9 +1336,9 @@
                 <div class="list-header">
                     <div class="row">
                         <div class="file">
-                            <span class="name">ITEMS</span>
-                            <span class="time">TIME</span>
-                            <span class="size">SIZE</span>
+                            <span class="name">文件名</span>
+                            <span class="time">修改时间</span>
+                            <span class="size">大小</span>
                         </div>
                     </div>
                 </div>
@@ -1317,9 +1351,9 @@
                 <div class="preview">
                     <div class="info">
                         <div class="file-name"></div>
-                        <div class="btn download">下载</div>
-                        <div class="btn quote">引用</div>
-                        <div class="btn share">分享</div>
+                        <div class="btn download">下载当前文件</div>
+                        <div class="btn quote">引用文件地址</div>
+                        <div class="btn share">复制页面地址</div>
                     </div>
                     <div class="content"></div>
                 </div>
