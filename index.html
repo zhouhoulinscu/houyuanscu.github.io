@@ -227,7 +227,6 @@
         }
 
         #main-page:hover,
-        .tree-node:hover,
         .row.file-wrapper:hover {
             box-shadow: 0 1px 10px 0 rgba(0,0,0,0.5);
             cursor: pointer;
@@ -329,7 +328,7 @@
             margin-left: auto;
         }
 
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 800px) {
             .left {
                 display: none;
             }
@@ -408,9 +407,43 @@
         .info .file-name{
             font-weight: bold;
             font-size: 16px;
+            overflow-x: hidden;
         }
-        .nav-path:hover{
+        .btn{
+            width: 8em;
+            cursor: pointer;
+        }
+        .btn,.nav-path,.tree-node:hover,.icon-inner {
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            color: inherit;
+            background: rgba(234, 234, 234, 0.5);
+        }
+        .header {
+            background: #fafafa;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .list-header .row {
+            margin-top: 30px;
+            line-height: 24px;
+            padding-bottom: 10px;
+        }
+        .row .file-wrapper {
+            padding: .3em 1em;
+        }
+        #main-page:hover,.nav-path:hover{
             color: #9c9c9c;
+            cursor: pointer;
+        }
+        .list-header{
+            font-size: 0.9em;
+            color: rgba(0,0,0,0.87);
+        }
+        .tree-node-wrapper {
+            padding: 3px 0;
         }
         ::-webkit-scrollbar {
             width: 6px;
@@ -992,7 +1025,7 @@
                             break;
 
                     }
-                    document.querySelector('.file-name').innerHTML = path;
+                    document.querySelector('.file-name').innerHTML = '文件路径：'path;
                     document.querySelector('.btn.download').addEventListener('click',
                         () => location.href = url
                     );
