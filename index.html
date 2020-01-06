@@ -44,7 +44,7 @@
         }
         
         .password input {
-            height: 2em;
+            padding: 8px;
             outline: none;
             border: solid rgb(218, 215, 215) 1px;
         }
@@ -226,12 +226,10 @@
             cursor: default;
         }
 
-        #main-page:hover,
         .row.file-wrapper:hover {
             box-shadow: 0 1px 10px 0 rgba(0,0,0,0.5);
             cursor: pointer;
         }
-
 
         .container {
             position: fixed;
@@ -442,8 +440,32 @@
             font-size: 0.9em;
             color: rgba(0,0,0,0.87);
         }
+        @media screen and (max-width: 400px) {
+            .size {
+                display:none;
+            }
+            .name {
+                width: 100%;
+            }
+        }
+        @media screen and (min-width: 800px) and (max-width: 1000px) {
+            .time {
+                display:none;
+            }
+        }
         .tree-node-wrapper {
             padding: 3px 0;
+        }
+        .tree-node:hover {
+            cursor: pointer;
+            color: #9c9c9c;
+        }
+        .password {
+            padding-top: 3em;
+        }
+        .password button {
+            vertical-align: middle;
+            height: 2.5em;
         }
         ::-webkit-scrollbar {
             width: 6px;
