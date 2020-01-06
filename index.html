@@ -19,8 +19,9 @@
         //     location.href = location.href.replace(/http/, 'https');
         // }
     </script>
-    <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta name="robots" content="noindex,nofollow" />
     <script src="//s0.pstatp.com/cdn/expire-1-M/ionicons/4.5.6/ionicons.js"></script>
     <link rel="shortcut icon" href="//blog.vircloud.net/favicon.ico">
     <link rel="apple-touch-icon-precomposed" type="image/png" href="//blog.vircloud.net/favicon.png">
@@ -347,7 +348,6 @@
             }
 
             .file-name {
-                overflow-x: scroll;
                 height: 100%;
             }
         }
@@ -405,7 +405,10 @@
         .info .file-name{
             font-weight: bold;
             font-size: 16px;
-            overflow-x: hidden;
+            white-space: normal;
+            line-height: 1.5em;
+            word-wrap: break-word;
+            word-break: break-all;
         }
         .btn{
             width: 8em;
@@ -432,8 +435,8 @@
         .row .file-wrapper {
             padding: .3em 1em;
         }
-        #main-page:hover,.nav-path:hover{
-            color: #9c9c9c;
+        #main-page:hover,.nav-path:hover,.tree-node:hover,.row.file-wrapper:hover{
+            color: #42a5f5;
             cursor: pointer;
         }
         .list-header{
@@ -455,10 +458,6 @@
         }
         .tree-node-wrapper {
             padding: 3px 0;
-        }
-        .tree-node:hover {
-            cursor: pointer;
-            color: #9c9c9c;
         }
         .password {
             padding-top: 3em;
@@ -825,7 +824,7 @@
                     return;
                 }
                 input.value = '';
-                input.placeholder = '正在验证..';
+                input.placeholder = '正在验证';
                 sendRequest(window.api.method,
                     window.api.url,
                     window.api.formatPayload(files.parent, passwd),
