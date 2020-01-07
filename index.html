@@ -17,8 +17,6 @@
 	<link href="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/styles/github.min.css" rel="stylesheet" />
 	<link href="//s0.pstatp.com/cdn/expire-1-M/github-markdown-css/3.0.1/github-markdown.min.css" rel="stylesheet" />
 	<script src="//s0.pstatp.com/cdn/expire-1-M/jquery/3.4.0/jquery.min.js"></script>
-	<script src="//s0.pstatp.com/cdn/expire-1-M/pdf.js/1.9.661/pdf.js"></script>
-	<script src="//s0.pstatp.com/cdn/expire-1-M/pdf.js/1.9.661/pdf.worker.js"></script>
 	<script src="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 	<link href="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet" />
 	<style>
@@ -891,8 +889,6 @@
 								return 'image';
 							} else if (['mp3', 'flac', 'wav'].contains(suffix)) {
 								return 'audio';
-							} else if (['pdf'].contains(suffix)) {
-								return 'pdffile';
 							} else if (['mp4', 'avi', 'mkv', 'flv', 'm3u8'].contains(suffix)) {
 								return 'video';
 							} else if (
@@ -1038,28 +1034,9 @@
 								content.appendChild(iframe);
 							}
 							break;
-						case 'pdffile':
-							content.innerHTML = '';
-							content.append('<canvas id="pdf-canvas"></canvas>');
-							PDFJS.getDocument(url).then((pdf) => {
-								return pdf.getPage(1);
-							}).then((page) => {
-								var scale = 1.5; // 设置展示比例
-								var viewport = page.getViewport(scale); // 获取pdf尺寸
-								var canvas = document.getElementById('pdf-canvas'); // 获取需要渲染的元素
-								var context = canvas.getContext('2d');
-								canvas.height = viewport.height;
-								canvas.width = viewport.width;
-								var renderContext = {
-									canvasContext: context,
-									viewport: viewport
-								};
-								page.render(renderContext);
-							});
-							break;
 						default:
 							content.style['text-align'] = 'center';
-							content.innerHTML = '当前文件不支持预览';
+							content.innerHTML = '当前文件不支持在线预览，建议下载查看。';
 							break;
 
 					}
@@ -1437,7 +1414,7 @@
 			</div>
 		</div>
 	</div>
-	<script>console.log('Ver:202001071453');</script>
+	<script>console.log('Ver:202001071457');</script>
 </body>
 
 </html>
