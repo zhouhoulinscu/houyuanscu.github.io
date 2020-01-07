@@ -889,6 +889,8 @@
 								return 'image';
 							} else if (['mp3', 'flac', 'wav'].contains(suffix)) {
 								return 'audio';
+							} else if (['pdf'].contains(suffix)) {
+								return 'pdffile';
 							} else if (['mp4', 'avi', 'mkv', 'flv', 'm3u8'].contains(suffix)) {
 								return 'video';
 							} else if (
@@ -1033,6 +1035,17 @@
 								iframe.src = officeOnline;
 								content.appendChild(iframe);
 							}
+							break;
+						case 'pdffile':
+							let pdfviewer = document.createElement('div');
+							pdfviewer.setAttribute('id', 'content');
+							let pdfsrc = document.createElement('embed');
+							pdfsrc.setAttribute('id', 'content-pdf');
+							pdfsrc.setAttribute('style', 'width: 100%; height: 100%; margin:0px;');
+							pdfsrc.setAttribute('src', url);
+							pdfviewer.append(pdfsrc);
+							content.innerHTML = '';
+							content.append(pdfviewer);
 							break;
 						default:
 							content.style['text-align'] = 'center';
