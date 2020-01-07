@@ -1037,16 +1037,13 @@
 							}
 							break;
 						case 'pdffile':
-							let pdfviewer = document.createElement('div');
-							pdfviewer.setAttribute('id', 'content');
 							let pdfsrc = document.createElement('embed');
-							pdfsrc.setAttribute('id', 'content-pdf');
 							pdfsrc.setAttribute('style', 'width: 100%; height: 100%; margin:0px;');
 							pdfsrc.setAttribute('type', 'application/pdf');
 							pdfsrc.setAttribute('src', url);
-							pdfviewer.append(pdfsrc);
+							content.setAttribute('style', 'height: 80%;');
 							content.innerHTML = '';
-							content.append(pdfviewer);
+							content.append(pdfsrc);
 							break;
 						default:
 							content.style['text-align'] = 'center';
@@ -1428,7 +1425,7 @@
 			</div>
 		</div>
 	</div>
-	<script>console.log('Ver:202001071417');</script>
+	<script>console.log('Ver:202001071431');</script>
 </body>
 
 </html>
